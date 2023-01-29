@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp3"
+             x:Class="MauiApp3.MainPage"
+             x:Name="this">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="redTemplate"
+                          x:DataType="local:ColorModel">
+                <Border BackgroundColor="Red">
+                    <Grid ColumnDefinitions="*, *">
+                        <BoxView Grid.Column="1"
+                                 Color="{Binding Name, Converter={local:NameColorConverter}, Mode=OneTime}" />
+                        <HorizontalStackLayout Grid.ColumnSpan="2">
+                            <Label Text="{Binding Name, Mode=OneTime}"
+                                   WidthRequest="100" />
+                            <Label Text="Model #:" />
+                            <Label Text="{Binding Count, Mode=OneTime}"
+                                   WidthRequest="50" />
+                            <Label Text="Template #:" />
+                            <Label Text="{Binding Path=TemplateCount, Source={x:Reference this}, Mode=OneTime}"
+                                   WidthRequest="50" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="greenTemplate"
+                          x:DataType="local:ColorModel">
+                <Border BackgroundColor="Green">
+                    <Grid ColumnDefinitions="*, *">
+                        <BoxView Grid.Column="1"
+                                 Color="{Binding Name, Converter={local:NameColorConverter}, Mode=OneTime}" />
+                        <HorizontalStackLayout Grid.ColumnSpan="2">
+                            <Label Text="{Binding Name, Mode=OneTime}"
+                                   WidthRequest="100" />
+                            <Label Text="Model #:" />
+                            <Label Text="{Binding Count, Mode=OneTime}"
+                                   WidthRequest="50" />
+                            <Label Text="Template #:" />
+                            <Label Text="{Binding Path=TemplateCount, Source={x:Reference this}, Mode=OneTime}"
+                                   WidthRequest="50" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="blueTemplate"
+                          x:DataType="local:ColorModel">
+                <Border BackgroundColor="Blue">
+                    <Grid ColumnDefinitions="*, *">
+                        <BoxView Grid.Column="1"
+                                 Color="{Binding Name, Converter={local:NameColorConverter}, Mode=OneTime}" />
+                        <HorizontalStackLayout Grid.ColumnSpan="2">
+                            <Label Text="{Binding Name, Mode=OneTime}"
+                                   WidthRequest="100" />
+                            <Label Text="Model #:" />
+                            <Label Text="{Binding Count, Mode=OneTime}"
+                                   WidthRequest="50" />
+                            <Label Text="Template #:" />
+                            <Label Text="{Binding Path=TemplateCount, Source={x:Reference this}, Mode=OneTime}"
+                                   WidthRequest="50" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <local:ColorTemplateSelector x:Key="selector"
+                                         RedTemplate="{StaticResource redTemplate}"
+                                         GreenTemplate="{StaticResource greenTemplate}"
+                                         BlueTemplate="{StaticResource blueTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <CollectionView x:Name="colorCV"
+                    ItemTemplate="{StaticResource selector}">
+    </CollectionView>
+</ContentPage>
